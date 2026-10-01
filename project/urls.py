@@ -28,3 +28,7 @@ urlpatterns = [
     #path('', index), # se eu importar direto a view
     #path('contact', contact), # se eu importar direto a view
 ]
+
+admin.site.site_header = 'Configurações de Sistema'
+admin.site.site_title = 'Criando o sistema dos Capuchinhos'
+admin.site.index_title = 'Paz e Bem!'

@@ -121,7 +121,7 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-AUTH_USER_MODEL = 'usuarios.CUstomUsuario' # informando ao django da criação de usuário costumizado, substituindo o modelo do django
+# AUTH_USER_MODEL = 'usuarios.CUstomUsuario' # informando ao django da criação de usuário costumizado, substituindo o modelo do django
 
 
 # Email

@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import index, contact
+from .views import post
 
 urlpatterns = [
-    ...
+    path('post', post),
 ]
