@@ -23,6 +23,7 @@ from django.urls import path, include
 urlpatterns = [
     path('painel/', admin.site.urls),
     path('', include('login.urls')), #/ = traz o subdomínio do app de login
+    path('', include ('register.urls'))
 
     #path('', index), # se eu importar direto a view
     #path('contact', contact), # se eu importar direto a view

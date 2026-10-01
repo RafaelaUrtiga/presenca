@@ -1,17 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class User (models.Model):
-    nome = models.CharField('Nome Completo', max_length=100),
-    email = models.EmailField('E-mail', max_length=100),
-    telefone = models.CharField('Telefone', max_length=20)
-
-    def __str__(self):
-        return self.nome
-
-class Client (models.Model):
-    nome = models.CharField('Nome', max_length=100),
-    sobrenome = models.CharField('Sobrenome', max_length=100)
-    telefone = models.CharField('Telefone', max_length=20)
+class Post(models.Model):
+    usuario = models.ForeignKey(User, verbose_name = "Usuário", on_delete=models.CASCADE)
+    titulo = models.CharField('Titulo')
 
     def __str__(self):
-        return f'{self.nome} {self.sobrenome}'
+        return self.titulo
