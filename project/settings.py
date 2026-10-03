@@ -25,7 +25,7 @@ SECRET_KEY = '***REMOVED***'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'login',
-    'register',
+    # 'register',
 ]
 
 MIDDLEWARE = [
@@ -121,7 +121,7 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# AUTH_USER_MODEL = 'usuarios.CUstomUsuario' # informando ao django da criação de usuário costumizado, substituindo o modelo do django
+AUTH_USER_MODEL = 'login.CustomUsuario' # informando ao django da criação de usuário costumizado, substituindo o modelo do django
 
 
 # Email
