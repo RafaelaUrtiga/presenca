@@ -19,39 +19,39 @@ class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
         fields = [
-            'nome', 'cpf', 'data_nascimento', 'telefone', 'cep', 'endereco', 'numero', 'bairro', 'municipio', 'uf'
+            'name', 'cpf', 'birth_date', 'phone', 'cep', 'address', 'number', 'neighborhood', 'city', 'state'
         ]
         widgets={
             'cpf': forms.TextInput(attrs={'placeholder': '000.000.000-00', 'inputmode': 'numeric'}),
-            'cep': forms.TextInput(attrs={'placeholder':'00.000-00', 'inputmode': 'numeric'}),
-            'telefone': forms.TextInput(attrs={'placeholder': '(00) 00000-0000', 'inputmode': 'numeric'}),
-            'numero': forms.TextInput(attrs={'placeholder': 's/n'}),
-            'data_nascimento': forms.DateInput(attrs={'type':'date'}, format='%Y-%m-%d'),
+            'zip_code': forms.TextInput(attrs={'placeholder':'00.000-00', 'inputmode': 'numeric'}),
+            'phone': forms.TextInput(attrs={'placeholder': '(00) 00000-0000', 'inputmode': 'numeric'}),
+            'number': forms.TextInput(attrs={'placeholder': 's/n'}),
+            'birth_date': forms.DateInput(attrs={'type':'date'}, format='%Y-%m-%d'),
         }
 
     ## mantem o nome com apenas 1 espaço
-    def clean_nome(self):
-        return ' '.join(self.cleaned_data['nome'].split())
+    def clean_name(self):
+        return ' '.join(self.cleaned_data['name'].split())
 
     ##remove a mascara para guardar os 11 dígitos
     def clean_cpf(self):
         return digitos(self.cleaned_data['cpf'])
     
     ## armazena apenas os 8 dígitos, valida se tem 8
-    def clean_cep(self):
-        cep = digitos(self.cleaned_data['cep'])
-        if len(cep)!=8:
+    def clean_zip_code(self):
+        zip_code = digitos(self.cleaned_data['zip_code'])
+        if len(zip_code)!=8:
             raise forms.ValidationError('O cep deve ter 8 dígitos.', code='cep_invalido')
-        return f'{cep[:2]}.{cep[2:5]}.{cep[5:]}'
+        return f'{zip_code[:2]}.{zip_code[2:5]}.{zip_code[5:]}'
 
-    def clean_telefone(self):
-        telefone = digitos(self.cleaned_data['telefone'])
-        if len(telefone) not in (10, 11):
+    def clean_phone(self):
+        phone = digitos(self.cleaned_data['phone'])
+        if len(phone) not in (10, 11):
             raise forms.ValidationError('Informe o telefone com DDD (10 ou 11 dígitos).', code='telefone_invalido')
-        return telefone
+        return phone
 
-    def clean_data_nascimento(self):
-        data = self.cleaned_data['data_nascimento']
+    def clean_birth_date(self):
+        data = self.cleaned_data['birth_date']
         hoje = timezone.localdate()
         if data > hoje:
             raise forms.ValidationErro('A data de nascimento não pode ser futura.', code='data_futura')
